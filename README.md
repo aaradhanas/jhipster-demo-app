@@ -1,4 +1,4 @@
-# blog
+# JHipster Sample Application
 This application was generated using JHipster 4.14.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.0](http://www.jhipster.tech/documentation-archive/v4.14.0).
 
 ## Development
@@ -166,3 +166,16 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [Protractor]: https://angular.github.io/protractor/
 [Leaflet]: http://leafletjs.com/
 [DefinitelyTyped]: http://definitelytyped.org/
+
+
+## Learnings
+
+1. Understood the login flow (success path)
+2. Rendering options/pages based on roles/authorities
+3. JPA repository and entities for User - [Reference](https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-introduction-to-query-methods/)
+4. View the data in the H2 database by accessing [http://localhost:8080/h2-console](http://localhost:8080/h2-console) - [Reference](https://medium.com/@harittweets/how-to-connect-to-h2-database-during-development-testing-using-spring-boot-44bbb287570)
+5. Why is liquibase used? - [Reference](https://blogs.oracle.com/shay/introduction-to-liquibase-and-managing-your-database-source-code)
+6. Angular - Subject (can be subscribed by many observers)
+7. i18n handling - Backend and UI (jhiTranslate)
+8. View the APIs exposed in swaggger ui (enabled in dev by default) -
+ http://localhost:8080/swagger-ui/index.html
