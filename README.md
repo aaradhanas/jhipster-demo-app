@@ -178,4 +178,4 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 6. Angular - Subject (can be subscribed by many observers)
 7. i18n handling - Backend and UI (jhiTranslate)
 8. View the APIs exposed in swaggger ui (enabled in dev by default) -
- http://localhost:8080/swagger-ui/index.html
+ http://localhost:8080/swagger-ui/index.html (or) http://localhost:8080/#/docs

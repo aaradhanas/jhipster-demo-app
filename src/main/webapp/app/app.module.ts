@@ -17,6 +17,7 @@ import { BlogAdminModule } from './admin/admin.module';
 import { BlogAccountModule } from './account/account.module';
 import { BlogEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { BlogDashboardModule } from './dashboard/dashboard.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -27,6 +28,7 @@ import {
     ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     imports: [
@@ -38,6 +40,7 @@ import {
         BlogAdminModule,
         BlogAccountModule,
         BlogEntityModule,
+        BlogDashboardModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
