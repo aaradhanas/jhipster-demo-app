@@ -143,3 +143,13 @@ jhipster:
 # ===================================================================
 
 application:
+    proxy:
+        kibana:
+            #The base path is configured in kibana "kibanadashboard" hence we have added servlet as
+            servlet-url: /test/
+            target-url: http://http-patch-vidhya.1d35.starter-us-east-1.openshiftapps.com/
+            logging-enabled: true
+            # Enable only if basic auth protected for kibana
+            auth-enabled: true
+            #currently the kibana dashboard is configured as basic auth protected username / password is kibanaadmin/kibanaadmin
+            basic-auth: Basic dXNlcjp1c2Vy
