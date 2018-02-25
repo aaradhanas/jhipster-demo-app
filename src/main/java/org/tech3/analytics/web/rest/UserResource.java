@@ -1,7 +1,11 @@
 package org.tech3.analytics.web.rest;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.StringUtils;
 import org.tech3.analytics.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+import org.tech3.analytics.domain.Authority;
 import org.tech3.analytics.domain.User;
 import org.tech3.analytics.repository.UserRepository;
 import org.tech3.analytics.security.AuthoritiesConstants;
@@ -29,6 +33,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing users.
@@ -187,4 +192,24 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
     }
+
+    @GetMapping("/dashboard/{login:"+ Constants.LOGIN_REGEX + "}")
+    public String getDashboardURL(@PathVariable String login){
+        log.debug("REST request to getDashboardURL: {}", login);
+        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        Optional<User> optionalUser = userService.getUserWithAuthoritiesByLogin(login);
+        if(optionalUser.isPresent()){
+            List<String> authorities = optionalUser.get().getAuthorities()
+                                        .stream().map( authority -> authority.getName()).collect(Collectors.toList());
+
+            if(authorities.contains(AuthoritiesConstants.ADMIN)){
+                return "1";
+            }
+            else if(authorities.contains(AuthoritiesConstants.USER)){
+                return "2";
+            }
+        }
+        return "";
+    }
+
 }
