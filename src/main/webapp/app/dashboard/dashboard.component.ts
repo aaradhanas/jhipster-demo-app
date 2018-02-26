@@ -12,12 +12,10 @@ export class DashboardComponent implements OnInit {
 
     public url: string;
     private dashboardId: string;
-    //public SafeUrl: safeUrl;
-  constructor(
+    constructor(
       private userService : UserService,
       private route: ActivatedRoute
-      //, private sanitizer: DomSanitizationService
-  ) { }
+    ) { }
 
   ngOnInit() {
       this.url = "http://localhost:8080/test/";
@@ -25,10 +23,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashboardURL(){
-      this.userService.getDashboard('admin').subscribe( (id) => {
-          this.dashboardId = id;
-          this.url += this.dashboardId;
-          //this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(this.url);
+      this.userService.getDashboard().subscribe( (id) => {
+          if( id != null ) {
+              this.dashboardId = id;
+              this.url += this.dashboardId;
+          }
       });
   }
 

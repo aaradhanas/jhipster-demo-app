@@ -34,7 +34,7 @@ public class KibanaProxyServletConfiguration{
                 String method = servletRequest.getMethod();
                 log("The requested method = " + method);
                 if(applicationProperties.getProxy().getKibana().isAuthEnabled()) {
-                    proxyRequest.addHeader("Authorization", "Basic dXNlcjp1c2Vy");
+                    proxyRequest.addHeader("Authorization", applicationProperties.getProxy().getKibana().getBasicAuth());
                 }
 
                 super.copyRequestHeaders(servletRequest, proxyRequest);

@@ -8,6 +8,7 @@ import { BlogSharedModule } from '../shared';
 
 import { DashboardComponent } from './dashboard.component';
 import {DASHBOARD_ROUTE} from "./dashboard.route";
+import {DashboardUrlPipe} from "./dashboard.url.pipe";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {DASHBOARD_ROUTE} from "./dashboard.route";
     ],
     declarations: [
         DashboardComponent,
+        DashboardUrlPipe
     ],
     entryComponents: [
     ],

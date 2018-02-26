@@ -1,5 +1,6 @@
 package org.tech3.analytics.web.rest;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
@@ -193,21 +194,20 @@ public class UserResource {
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
     }
 
-    @GetMapping("/dashboard/{login:"+ Constants.LOGIN_REGEX + "}")
-    public String getDashboardURL(@PathVariable String login){
-        log.debug("REST request to getDashboardURL: {}", login);
+    @GetMapping("/dashboard")
+    public String getDashboardURL(){
+        log.debug("REST request to getDashboardURL");
         SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        Optional<User> optionalUser = userService.getUserWithAuthoritiesByLogin(login);
-        if(optionalUser.isPresent()){
-            List<String> authorities = optionalUser.get().getAuthorities()
-                                        .stream().map( authority -> authority.getName()).collect(Collectors.toList());
+        List<String> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities()
+                                    .stream().map(GrantedAuthority::getAuthority ).collect(Collectors.toList());
 
-            if(authorities.contains(AuthoritiesConstants.ADMIN)){
-                return "1";
-            }
-            else if(authorities.contains(AuthoritiesConstants.USER)){
-                return "2";
-            }
+        if(authorities.contains(AuthoritiesConstants.ADMIN)){
+            //return id of the dashboard to be shown for admin role
+            return "";
+        }
+        else if(authorities.contains(AuthoritiesConstants.USER)){
+            //return id of the dashboard to be shown for user role
+            return "2";
         }
         return "";
     }
