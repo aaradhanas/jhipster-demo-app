@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from "@angular/core";
+import {Pipe, PipeTransform, SecurityContext} from "@angular/core";
 import {DomSanitizer} from "@angular/platform-browser";
 /**
  * Created by AAS on 2/26/2018.
@@ -19,5 +19,6 @@ export class DashboardUrlPipe implements PipeTransform{
      */
     transform(url){
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        //return this.sanitizer.sanitize(SecurityContext.URL, url);
     }
 }

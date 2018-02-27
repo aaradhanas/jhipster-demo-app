@@ -207,7 +207,7 @@ public class UserResource {
         }
         else if(authorities.contains(AuthoritiesConstants.USER)){
             //return id of the dashboard to be shown for user role
-            return "2";
+            return "";
         }
         return "";
     }
